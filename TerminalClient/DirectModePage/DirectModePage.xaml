@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TerminaClient.DirectModePage"
+             Title="Direct mode">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <VerticalStackLayout Padding="3">
+                <Label Text="Mechanic" HorizontalOptions="CenterAndExpand" FontSize="24"/>
+                <VerticalStackLayout Padding="20">
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="Servo-1"/>
+                        <Slider x:Name="serv1" Minimum="0" Maximum="360" Value="180" ValueChanged="serv1_ValueChanged"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="Servo-2"/>
+                        <Slider x:Name="serv2" Minimum="0" Maximum="100" Value="50" ValueChanged="serv2_ValueChanged" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="Servo-3"/>
+                        <Slider x:Name="serv3" Minimum="0" Maximum="100" Value="50" ValueChanged="serv3_ValueChanged" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="Servo-4"/>
+                        <Slider x:Name="serv4" Minimum="0" Maximum="100" Value="50" ValueChanged="serv4_ValueChanged" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="3">
+                <Label Text="Light" HorizontalOptions="CenterAndExpand" FontSize="24"/>
+
+                <VerticalStackLayout Padding="20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Main" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                        <Switch x:Name="lum6" Toggled="lum6_Toggled" IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Backlight" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                        <Switch x:Name="lum5" Toggled="lum5_Toggled" IsToggled="False" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

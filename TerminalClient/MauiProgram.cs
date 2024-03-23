@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Plugin.Maui.Audio;
+using Microsoft.Extensions.Logging;
+using Plugin.Maui.AudioRecorder.Hosting;
+using MauiAudio;
 
-namespace TerminalClient
+namespace TerminaClient
 {
     public static class MauiProgram
     {
@@ -9,6 +12,8 @@ namespace TerminalClient
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseAudioRecorder()
+              //  .UseMauiAudio()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,7 +23,7 @@ namespace TerminalClient
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton(AudioManager.Current);
             return builder.Build();
         }
     }

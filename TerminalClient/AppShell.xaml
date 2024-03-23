@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="TerminalClient.AppShell"
+    x:Class="TerminaClient.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TerminalClient"
-    Shell.FlyoutBehavior="Disabled"
-    Title="TerminalClient">
+    xmlns:local="clr-namespace:TerminaClient"
+    Title="TerminaClient"
+    Loaded="Shell_Loaded"
+       Shell.FlyoutBehavior="Flyout"
+    >
+    <FlyoutItem Title="Home" Icon="flex_main.svg">
+        <Tab Title="Voice" Icon="tab_voice.svg" >
+            <ShellContent
+                ContentTemplate="{DataTemplate local:VoiceModePage}"
+                Route="VoiceModePage" />
+        </Tab>
+        <Tab Title="Direct" Icon="tab_direct.svg">
+            <ShellContent
+                ContentTemplate="{DataTemplate local:DirectModePage}"
+                Route="DirectModePage" />
+        </Tab>
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Settings" Icon="flex_settings.svg">
+        <ShellContent
+             ContentTemplate="{DataTemplate local:SettingsPage}"
+                Route="SettingsPage" />
+    </FlyoutItem>
 
 </Shell>
