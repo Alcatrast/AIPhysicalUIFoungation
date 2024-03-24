@@ -95,7 +95,7 @@ namespace Server
         {
             //_ = Task.Run(async () =>
             //{
-            string text =stt.GetText(message.AudioData);
+            string text = stt.GetText(message.AudioData);
             CommandAudioDataPair result;
 
             if (new CommandDefiner().Define(text, out var command))
@@ -108,13 +108,13 @@ namespace Server
                 AudioMessage audioMessage = new() { AudioData = result.AudioData };
                 string request = APIManager.Boxing(audioMessage);
                 General.Devices.Terminal.Send(request);
-                Console.WriteLine("\nPenis");
+                Console.WriteLine("\nSended To Client");
 
 
-                if (General.Devices.Robot != null) General.Devices.Robot.Send(result.Command.Render());
+                if (General.Devices.Robot != null) { General.Devices.Robot.Send(result.Command.Render()); Console.WriteLine("Sended To Roobot"); }
             }
-                // });
-            Console.WriteLine("im huiere");
+            // });
+            Console.WriteLine("VoiceComandTemporared");
         }
     }
 }
