@@ -108,13 +108,13 @@ namespace Server
                 AudioMessage audioMessage = new() { AudioData = result.AudioData };
                 string request = APIManager.Boxing(audioMessage);
                 General.Devices.Terminal.Send(request);
-                Console.WriteLine("\nSended To Client");
+                Console.WriteLine("\nPenis");
 
 
-                if (General.Devices.Robot != null) { General.Devices.Robot.Send(result.Command.Render()); Console.WriteLine("Sended To Roobot"); }
+                if (General.Devices.Robot != null) General.Devices.Robot.Send(result.Command.Render());
             }
-            // });
-            Console.WriteLine("VoiceComandTemporared");
+                // });
+            Console.WriteLine("im huiere");
         }
     }
 }
