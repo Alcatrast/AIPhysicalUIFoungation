@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls.PlatformConfiguration;
 using Plugin.Maui.AudioRecorder;
 
-namespace TerminaClient.Devices.AudioService.MicroRecorders.Android
+namespace TerminalClient.Devices.AudioService.MicroRecorders.Android
 {
     public interface IRecordAudio
     {

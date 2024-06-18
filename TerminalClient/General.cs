@@ -1,10 +1,10 @@
 ﻿using Configuration.List;
 using Microsoft.Maui.Controls.PlatformConfiguration;
-using TerminaClient.Devices.Internet;
+using TerminalClient.Devices.Internet;
 //using Android.OS;
 //using Android.App;
 //using Android.Content;
-namespace TerminaClient
+namespace TerminalClient
 {
     public static class General
     {

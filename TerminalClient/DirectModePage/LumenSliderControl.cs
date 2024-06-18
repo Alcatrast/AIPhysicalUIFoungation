@@ -1,5 +1,5 @@
 ﻿
-namespace TerminaClient;
+namespace TerminalClient;
 
 public partial class DirectModePage : ContentPage
 {

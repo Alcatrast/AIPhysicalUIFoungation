@@ -1,7 +1,7 @@
 using ATNetAPI;
 using ATNetAPI.CommandModels;
 
-namespace TerminaClient;
+namespace TerminalClient;
 
 public partial class DirectModePage : ContentPage
 {

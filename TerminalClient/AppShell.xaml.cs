@@ -1,6 +1,6 @@
-﻿using TerminaClient.Devices;
+﻿using TerminalClient.Devices;
 
-namespace TerminaClient
+namespace TerminalClient
 {
     public partial class AppShell : Shell
     {

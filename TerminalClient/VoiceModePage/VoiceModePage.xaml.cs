@@ -1,9 +1,9 @@
 using ATNetAPI;
 using System.Timers;
-using TerminaClient.Devices.AudioService;
+using TerminalClient.Devices.AudioService;
 using Microsoft.Maui.ApplicationModel;
 
-namespace TerminaClient;
+namespace TerminalClient;
 public partial class VoiceModePage : ContentPage
 {
     private bool _voiceActive = false;

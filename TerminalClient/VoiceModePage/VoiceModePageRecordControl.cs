@@ -1,6 +1,6 @@
-﻿using TerminaClient.Devices.AudioService.MicroRecorders.Android;
+﻿using TerminalClient.Devices.AudioService.MicroRecorders.Android;
 
-namespace TerminaClient;
+namespace TerminalClient;
 public partial class VoiceModePage : ContentPage
 {
     public static string outAudioPath = General.StorageMicroPenis;

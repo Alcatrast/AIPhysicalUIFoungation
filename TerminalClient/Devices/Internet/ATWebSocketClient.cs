@@ -1,7 +1,7 @@
 ﻿using System.Net.WebSockets;
 using System.Text;
 
-namespace TerminaClient.Devices.Internet
+namespace TerminalClient.Devices.Internet
 {
     public class ATWebSocketClient
     {

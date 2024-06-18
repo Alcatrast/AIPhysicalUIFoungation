@@ -1,6 +1,6 @@
-﻿using TerminaClient.Devices;
+﻿using TerminalClient.Devices;
 [assembly: Dependency(typeof(PermissionsService))]
-namespace TerminaClient.Devices
+namespace TerminalClient.Devices
 {
     public static class PermissionsService
     {

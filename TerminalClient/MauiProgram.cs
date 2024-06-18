@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Plugin.Maui.AudioRecorder.Hosting;
 using MauiAudio;
 
-namespace TerminaClient
+namespace TerminalClient
 {
     public static class MauiProgram
     {

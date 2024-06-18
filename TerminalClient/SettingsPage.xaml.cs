@@ -1,4 +1,4 @@
-namespace TerminaClient;
+namespace TerminalClient;
 
 public partial class SettingsPage : ContentPage
 {

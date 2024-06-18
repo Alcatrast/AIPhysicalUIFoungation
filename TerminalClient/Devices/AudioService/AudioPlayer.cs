@@ -1,6 +1,6 @@
 ﻿using Plugin.Maui.Audio;
 
-namespace TerminaClient.Devices.AudioService
+namespace TerminalClient.Devices.AudioService
 {
     public class AudioPlayer
     {
