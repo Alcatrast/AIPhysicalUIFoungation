@@ -8,7 +8,7 @@ namespace Server.VoiceService.Handler.GPTService.Yandex
         public async Task<string> GetResponse(string text, GPTSettings settings)
         {
             string url = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion";
-                
+
             YandexGPTRequestBody body = YandexGPTRequestBody.BuildFrom(text, settings);
             string data = System.Text.Json.JsonSerializer.Serialize(body);
             string result = "Запрос не исполнен.";
@@ -29,8 +29,12 @@ namespace Server.VoiceService.Handler.GPTService.Yandex
                     settings.Dialog.AddUserMessage(text);
                     settings.Dialog.AddAssistantMessage(result);
                 }
-                else result = "Ошибка: " + response.StatusCode;
+                else
+                {
+                    result = "Ошибка: " + response.StatusCode;
+                }
             }
+            Console.WriteLine("Y Nerual answer: " + result);
             return result;
         }
     }

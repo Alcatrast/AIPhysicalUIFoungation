@@ -21,7 +21,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            var server = new WebSocketServer(ForNetTextAPIUrls.Server);
+            var server = new WebSocketServer(ForNetTextAPIUrls.CSLocalhost);
             server.Start(socket =>
             {
                 socket.OnOpen = () =>
@@ -108,13 +108,13 @@ namespace Server
                 AudioMessage audioMessage = new() { AudioData = result.AudioData };
                 string request = APIManager.Boxing(audioMessage);
                 General.Devices.Terminal.Send(request);
-                Console.WriteLine("\nSended To Client");
+                Console.WriteLine("...Sended To Client");
 
 
                 if (General.Devices.Robot != null) { General.Devices.Robot.Send(result.Command.Render()); Console.WriteLine("Sended To Roobot"); }
             }
             // });
-            Console.WriteLine("VoiceComandTemporared");
+            Console.WriteLine("...Main: Voice command temporared.");
         }
     }
 }

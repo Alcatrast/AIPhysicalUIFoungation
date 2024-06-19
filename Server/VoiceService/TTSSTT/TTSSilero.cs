@@ -44,6 +44,7 @@ internal class TTSSilero
 
 
         File.WriteAllBytes(audioFilePath, oggAudioData);
+        Console.WriteLine("...S Answer syntesired.");
         return audioFilePath;
     }
 

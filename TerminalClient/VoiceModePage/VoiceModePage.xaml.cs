@@ -1,15 +1,16 @@
 using ATNetAPI;
 using System.Timers;
 using TerminalClient.Devices.AudioService;
-using Microsoft.Maui.ApplicationModel;
+using ATMauiAudioRecorder.Abstractions;
 
 namespace TerminalClient;
 public partial class VoiceModePage : ContentPage
 {
     private bool _voiceActive = false;
     private bool _isCancelled = false;
-    public VoiceModePage()
+    public VoiceModePage(IAudioRecorder audioRecorder)
     {
+        recorder = audioRecorder;
         InitializeComponent();
     }
 

@@ -41,13 +41,14 @@ internal class STTSilero:ISTT
         var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
         var responseStream = httpResponse.GetResponseStream();
 
-        string result = "DEFAULT";
+        string result = "ERROR";
         using (var streamReader = new StreamReader(responseStream))
         {
             result = streamReader.ReadToEnd();
             dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(result);
             result = json.transcriptions[0].transcript;
         }
+        Console.WriteLine("S Recognized: " + result);
         return result;
     }
 }

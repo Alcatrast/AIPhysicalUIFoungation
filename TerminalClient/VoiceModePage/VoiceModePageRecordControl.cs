@@ -1,19 +1,19 @@
-﻿using TerminalClient.Devices.AudioService.MicroRecorders.Android;
+﻿using ATMauiAudioRecorder.Abstractions;
 
 namespace TerminalClient;
 public partial class VoiceModePage : ContentPage
 {
-    public static string outAudioPath = General.StorageMicroPenis;
-    AndroidMicrophoneRecorder recorder;
+    public static string outAudioPath;
+    private readonly IAudioRecorder recorder;
     public void StartRecord()
     {
-        recorder = new AndroidMicrophoneRecorder();
-        recorder.StartRecord();
+        outAudioPath = recorder.FilePath;
+        recorder.StartRecordAsync();
     }
 
     public void StopRecord()
     {
-        recorder.StopRecord();
+        recorder.StopRecordAsync();
 
         if (_isCancelled == false)
         {

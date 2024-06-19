@@ -1,7 +1,5 @@
-﻿using Plugin.Maui.Audio;
-using Microsoft.Extensions.Logging;
-using Plugin.Maui.AudioRecorder.Hosting;
-using MauiAudio;
+﻿using Microsoft.Extensions.Logging;
+using ATMauiAudioRecorder.Hosting;
 
 namespace TerminalClient
 {
@@ -13,17 +11,15 @@ namespace TerminalClient
             builder
                 .UseMauiApp<App>()
                 .UseAudioRecorder()
-              //  .UseMauiAudio()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddTransient<VoiceModePage>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton(AudioManager.Current);
             return builder.Build();
         }
     }

@@ -19,7 +19,7 @@ namespace Server.VoiceService.TTSSTT
                 "lang=ru-RU",
                 "rawResults=true",
                 "format=lpcm",
-                "sampleRateHertz=48000"
+                "sampleRateHertz=16000"
             });
 
             var url = new Uri($"https://stt.api.cloud.yandex.net/speech/v1/stt:recognize?{paramsStr}");
@@ -40,10 +40,14 @@ namespace Server.VoiceService.TTSSTT
 
                 if (decodedData.error_code == null)
                 {
-                    Console.WriteLine(decodedData.result);
+                    Console.WriteLine("Y Recognized text: " + decodedData.result);
                     return decodedData.result;
                 }
-                else { return "Ошибка спичкит"; }
+                else 
+                {
+                    Console.WriteLine("Y Recognized ERROR: " + decodedData.error_code);
+                    return "Ошибка спичкит"; 
+                }
             }
         }
     }

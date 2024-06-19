@@ -69,12 +69,14 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="2.1.0" />
-		<PackageReference Include="Plugin.Maui.AudioRecorder" Version="1.0.1" />
-		<PackageReference Include="Plugin.MauiAudio" Version="1.2.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ATNetAPI\ATNetAPI.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\ATMauiAudioRecorder\ATMauiAudioRecorder.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
