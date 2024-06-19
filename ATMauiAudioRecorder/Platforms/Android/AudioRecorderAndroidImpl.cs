@@ -35,7 +35,7 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
 
         _bufferSize = AudioRecord.GetMinBufferSize(sampleRate, channelConfig, encoding) * 8;
 
-        return new AudioRecord(AudioSource.Mic, sampleRate, ChannelIn.Stereo, encoding, _bufferSize);
+        return new AudioRecord(AudioSource.Mic, sampleRate, ChannelIn.Mono, encoding, _bufferSize);
     }
 
     private Audio GetAudio()
@@ -84,7 +84,7 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
         FileInputStream inputStream;
         FileOutputStream outputStream;
 
-        int channels = 2;
+        int channels = 1;
         long byteRate = 16 * _sampleRate * channels / 8;
 
         var data = new byte[_bufferSize];

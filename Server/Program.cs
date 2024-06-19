@@ -1,19 +1,10 @@
 ﻿using ATNetAPI;
-using Configuration.List;
+using ATNetAPI.Configuration.List;
 using Fleck;
 using Server.UserDataBase;
 using Server.VoiceService.Handler;
 using Server.VoiceService.Model;
 using Server.VoiceService.TTSSTT;
-namespace Configuration.List
-{
-    internal class ForNetTextAPIUrls
-    {
-        public static string Server { get; } = @"ws://[::]:80/";
-        public static string Client { get; } = @"ws://***.***.***.***:****/";
-        public static string CSLocalhost { get; } = @"ws://[::]:4676/";
-    }
-}
 
 namespace Server
 {
@@ -21,7 +12,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            var server = new WebSocketServer(ForNetTextAPIUrls.CSLocalhost);
+            var server = new WebSocketServer(ForNetTextAPIUrls.Server);
             server.Start(socket =>
             {
                 socket.OnOpen = () =>
@@ -33,7 +24,7 @@ namespace Server
                 {
                     if (General.Devices.IsTerminal(socket))
                     {
-                        Console.WriteLine("From term: "+message);
+                        Console.WriteLine("From terminal: "+message.Length+ " bytes.");
                         if (APIManager.TryUnboxing(message, out var msg) == false) return;
                         if (msg is ResendMessage resend)
                         {
@@ -42,7 +33,7 @@ namespace Server
                                 General.Devices.Robot.Send(resend.Message);
                         }else if (msg is AudioMessage audio)
                         {
-                            Console.WriteLine("\nIts Audio");
+                            Console.WriteLine("\nIts AudioMessage");
                             RunVoiceComand(audio);
                         }
                     }
