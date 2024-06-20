@@ -10,7 +10,7 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
 {
     public bool CanRecordAudio { get; private set; } = true;
     public bool IsRecording { get; private set; }
-    public string FilePath { get; set; } = Path.Combine(DPAI.GetDownloadsFolderPath(), "sound.wav");
+    public byte[] AudioDataWav { get; private set; }
 
     private AudioRecord _audioRecord;
 
@@ -35,38 +35,28 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
 
         _bufferSize = AudioRecord.GetMinBufferSize(sampleRate, channelConfig, encoding) * 8;
 
-        return new AudioRecord(AudioSource.Mic, sampleRate, ChannelIn.Mono, encoding, _bufferSize);
+        return new AudioRecord(AudioSource.Mic, sampleRate, channelConfig, encoding, _bufferSize);
     }
 
     private Audio GetAudio()
     {
         if (_audioRecord is null ||
-                _audioRecord.RecordingState is RecordState.Recording ||
-                System.IO.File.Exists(FilePath) is false)
+                _audioRecord.RecordingState is RecordState.Recording)
         {
             return null;
         }
 
-        return new Audio(FilePath);
+        return new Audio(AudioDataWav);
     }
 
     private void WriteAudioDataToFile()
     {
         var data = new byte[_bufferSize];
-
-        var fileName = FilePath.Split("/").Last();
+        var fileName = "atrt.wav";
         _rawFilePath = Path.Combine(FileSystem.CacheDirectory, fileName);
-
         FileOutputStream outputStream;
-        try
-        {
-            outputStream = new FileOutputStream(_rawFilePath);
-        }
-        catch (Exception ex)
-        {
-            throw new FileLoadException($"unable to create a new file: {ex.Message}");
-        }
-
+        try { outputStream = new FileOutputStream(_rawFilePath); }
+        catch (Exception ex) { throw new FileLoadException($"unable to create a new file: {ex.Message}"); }
         if (outputStream is not null)
         {
             while (_audioRecord.RecordingState == RecordState.Recording)
@@ -74,25 +64,24 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
                 _audioRecord.Read(data, 0, _bufferSize);
                 outputStream.Write(data);
             }
-
             outputStream.Close();
         }
     }
 
-    private void CopyWaveFile(string sourcePath, string destinationPath)
+    private byte[] CopyWaveFile(string sourcePath)
     {
         FileInputStream inputStream;
-        FileOutputStream outputStream;
+        MemoryStream outputStream;
 
         int channels = 1;
         long byteRate = 16 * _sampleRate * channels / 8;
 
         var data = new byte[_bufferSize];
-
+        byte[] result= new byte[0];
         try
         {
             inputStream = new FileInputStream(sourcePath);
-            outputStream = new FileOutputStream(destinationPath);
+            outputStream = new MemoryStream();
             var totalAudioLength = inputStream.Channel.Size();
             var totalDataLength = totalAudioLength + 36;
 
@@ -110,17 +99,18 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
             }
 
             inputStream.Close();
+            result = outputStream.ToArray();
             outputStream.Close();
-
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
         }
+        return result;
     }
 
     private static void WriteWaveFileHeader(
-        FileOutputStream outputStream,
+        MemoryStream outputStream,
         long audioLength,
         long dataLength,
         long sampleRate,
@@ -200,7 +190,7 @@ public class AudioRecorderAndroidImpl : IAudioRecorder, IDisposable
             _audioRecord?.Stop();
         }
 
-        CopyWaveFile(_rawFilePath, FilePath);
+        AudioDataWav = CopyWaveFile(_rawFilePath);
 
         return Task.FromResult(GetAudio());
     }

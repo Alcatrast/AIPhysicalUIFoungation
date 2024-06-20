@@ -47,7 +47,7 @@ public partial class VoiceModePage : ContentPage
         Controlable(false);
         RecreateTimer(ref _responseAwaiter);
 
-        byte[] audioData = File.ReadAllBytes(outAudioPath);
+        byte[] audioData = outAudioPath;
         AudioMessage audioMessage = new() { AudioData = audioData };
         string request = APIManager.Boxing(audioMessage);
         _ =await General.NetClient.Send(request);

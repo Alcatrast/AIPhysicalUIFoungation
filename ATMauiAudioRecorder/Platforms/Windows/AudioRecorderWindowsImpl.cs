@@ -13,17 +13,15 @@ public class AudioRecorderWindowsImpl : IAudioRecorder, IDisposable
 
     public bool CanRecordAudio { get; private set; } = true;
     public bool IsRecording { get; private set; }
-    public string FilePath { get; set; } = Path.Combine(DPWI.GetDownloadsFolderPath(), "sound.wav");
-    public AudioRecorderWindowsImpl()
-    {
-    
-    }
+    public byte[] AudioDataWav { get; private set; } = new byte[0];
+    private MemoryStream _audioStream;
 
     public Task StartRecordAsync()
     {
         waveSource = new();
         waveSource.WaveFormat = new WaveFormat(16000, 1); // Задаем формат аудио (44100 Гц, 16 бит, моно)
-        waveFile = new WaveFileWriter(FilePath, waveSource.WaveFormat);
+        _audioStream = new MemoryStream();
+        waveFile = new WaveFileWriter(_audioStream, waveSource.WaveFormat);
 
         waveSource.DataAvailable += (s, e) =>
         {
@@ -39,7 +37,10 @@ public class AudioRecorderWindowsImpl : IAudioRecorder, IDisposable
         waveSource.StopRecording();
         waveSource.Dispose();
         waveFile.Dispose();
-        return new Audio(FilePath);
+        AudioDataWav = _audioStream.ToArray();
+        _audioStream.Close();
+        _audioStream.Dispose();
+        return new Audio(AudioDataWav);
     }
 
     public void Dispose()

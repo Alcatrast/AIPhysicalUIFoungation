@@ -3,17 +3,17 @@
 namespace TerminalClient;
 public partial class VoiceModePage : ContentPage
 {
-    public static string outAudioPath;
+    public static byte[] outAudioPath;
     private readonly IAudioRecorder recorder;
     public void StartRecord()
     {
-        outAudioPath = recorder.FilePath;
+      //  outAudioPath = recorder.FilePath;
         recorder.StartRecordAsync();
     }
 
-    public void StopRecord()
+    public async void StopRecord()
     {
-        recorder.StopRecordAsync();
+        outAudioPath=( await recorder.StopRecordAsync()).GetFilePath();
 
         if (_isCancelled == false)
         {

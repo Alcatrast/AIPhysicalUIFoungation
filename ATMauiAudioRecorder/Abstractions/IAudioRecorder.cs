@@ -4,7 +4,7 @@ public interface IAudioRecorder
 {
     bool CanRecordAudio { get; }
     bool IsRecording { get; }
-    string FilePath { get; set; }
+    byte[] AudioDataWav { get; }
     Task StartRecordAsync();
     Task<Audio> StopRecordAsync();
     void Dispose();
