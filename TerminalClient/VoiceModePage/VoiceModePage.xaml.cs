@@ -12,6 +12,7 @@ public partial class VoiceModePage : ContentPage
     {
         recorder = audioRecorder;
         InitializeComponent();
+        NetStateVSL.Children.Add(new NetworkStateView());
     }
 
     private void OnStartStopRecordButtonClicked(object sender, EventArgs e)

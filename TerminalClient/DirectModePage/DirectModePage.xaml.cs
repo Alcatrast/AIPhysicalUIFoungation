@@ -10,6 +10,7 @@ public partial class DirectModePage : ContentPage
     public DirectModePage()
     {
         InitializeComponent();
+        NetStateVSL.Children.Add(new NetworkStateView());
         SlidersServoThreadsInit();
         SlidersLumenThreadsInit();
     }

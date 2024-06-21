@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TerminalClient.VoiceModePage"
                      Title="Voice mode">
-    <ScrollView>
+    <VerticalStackLayout>
+        <VerticalStackLayout x:Name="NetStateVSL"/>
+        <ScrollView>
         <VerticalStackLayout
      Spacing="25"
      Padding="30,0"
@@ -57,4 +59,5 @@ HorizontalOptions="CenterAndExpand" />
             <Button x:Name="cancelBtn" Text=" X Cancel" Clicked="Cancel_Clicked" IsVisible="False"/>
         </VerticalStackLayout>
     </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>

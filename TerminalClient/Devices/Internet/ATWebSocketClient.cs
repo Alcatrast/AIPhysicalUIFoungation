@@ -14,6 +14,13 @@ namespace TerminalClient.Devices.Internet
         }
         private async void _Connect()
         {
+            webSocket.Abort();
+            try
+            {
+                await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, null, CancellationToken.None);
+            }catch{ }
+                webSocket.Dispose();
+            webSocket = new();
             try
             {
                 await webSocket.ConnectAsync(serverUri, CancellationToken.None);
@@ -22,7 +29,9 @@ namespace TerminalClient.Devices.Internet
                     await Send("IAMGLADOSTERMINAL");
                 }
             }
-            catch { }
+          catch(WebSocketException e) 
+            {
+            }
         }
         public bool IsConnected { get { return webSocket.State == WebSocketState.Open; } }
         public bool Connect()
@@ -56,7 +65,7 @@ namespace TerminalClient.Devices.Internet
             }
             catch
             {
-                await Shell.Current.DisplayAlert("Error", "No connection for receive.", "Ok");
+             //   await Shell.Current.DisplayAlert("Error", "No connection for receive.", "Ok");
                 return string.Empty;
             }
         }
