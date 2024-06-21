@@ -2,24 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TerminalClient.VoiceModePage"
-                     Title="Voice mode">
+                                Title="Voice mode">
     <VerticalStackLayout>
         <VerticalStackLayout x:Name="NetStateVSL"/>
         <ScrollView>
-        <VerticalStackLayout
+            <VerticalStackLayout
      Spacing="25"
      Padding="30,0"
      VerticalOptions="Center">
-            <Label x:Name="lab" HorizontalOptions="FillAndExpand"/>
+                <Label x:Name="lab" HorizontalOptions="FillAndExpand"/>
 
-            <ImageButton
+                <ImageButton
          x:Name="SpeakBtn"
          Source="unactive_micro.svg"
          Clicked="OnStartStopRecordButtonClicked"
          HeightRequest="200"
          HorizontalOptions="CenterAndExpand" />
-            
-            <ImageButton
+
+                <ImageButton
             x:Name="UnspeakBtn"
             Source="active_micro.svg"
             Clicked="OnStartStopRecordButtonClicked"
@@ -27,7 +27,7 @@
             HorizontalOptions="CenterAndExpand"
                 IsVisible="false"/>
 
-            <!--<Button
+                <!--<Button
 x:Name="SpeakBtn"
 Text="Record"
 Clicked="OnStartStopRecordButtonClicked"
@@ -42,22 +42,22 @@ HorizontalOptions="CenterAndExpand" />
    HorizontalOptions="CenterAndExpand"
        IsVisible="false"/>-->
 
-            <Label
+                <Label
             x:Name="PressLb"
             Text="Click to speak."
             SemanticProperties.HeadingLevel="Level1"
             FontSize="32"
             HorizontalOptions="Center" />
 
-            <Label
+                <Label
          x:Name="SpeakLb"
          IsVisible="false"
          Text="Speak..."
          SemanticProperties.HeadingLevel="Level1"
          FontSize="32"
          HorizontalOptions="Center" />
-            <Button x:Name="cancelBtn" Text=" X Cancel" Clicked="Cancel_Clicked" IsVisible="False"/>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Button x:Name="cancelBtn" Text=" X Cancel" Clicked="Cancel_Clicked" IsVisible="False"/>
+            </VerticalStackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

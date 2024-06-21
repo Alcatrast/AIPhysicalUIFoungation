@@ -51,18 +51,18 @@ public partial class VoiceModePage : ContentPage
         byte[] audioData = outAudioPath;
         AudioMessage audioMessage = new() { AudioData = audioData };
         string request = APIManager.Boxing(audioMessage);
-        _ =await General.NetClient.Send(request);
+        _ = await General.NetClient.Send(request);
 
-            string received = await General.NetClient.Receive();
-            if (APIManager.TryUnboxing(received, out var message))
-            {
-                if (message is AudioMessage am) { _AudioData = am.AudioData; }
-            }
-            if(audioData != null)
-            {
-                _responseAwaiter.Elapsed -= OnTimedEvent;
-                OnTimedEvent(default, default);
-            }
+        string received = await General.NetClient.Receive();
+        if (APIManager.TryUnboxing(received, out var message))
+        {
+            if (message is AudioMessage am) { _AudioData = am.AudioData; }
+        }
+        if (audioData != null)
+        {
+            _responseAwaiter.Elapsed -= OnTimedEvent;
+            OnTimedEvent(default, default);
+        }
     }
 
     byte[]? _AudioData = null;

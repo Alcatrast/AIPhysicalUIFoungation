@@ -1,5 +1,4 @@
-﻿
-namespace TerminalClient
+﻿namespace TerminalClient
 {
     public partial class App : Application
     {
@@ -9,6 +8,5 @@ namespace TerminalClient
             General.NetClient.Connect();
             MainPage = new AppShell();
         }
-       
-    } 
+    }
 }

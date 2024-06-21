@@ -18,8 +18,9 @@ namespace TerminalClient
                 });
             builder.Services.AddTransient<VoiceModePage>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
             return builder.Build();
         }
     }
