@@ -17,9 +17,8 @@ public partial class VoiceModePage : ContentPage
 
     private void OnStartStopRecordButtonClicked(object sender, EventArgs e)
     {
-        if (_voiceActive) { _isCancelled = false; StopRecord(); }
-        else { StartRecord(); }
-        ChangeIntState(!_voiceActive);
+        if (_voiceActive) { _isCancelled = false; StopRecord(); ChangeIntState(!_voiceActive); }
+        else { if (General.AutoReconnectSystem.IsConnected) { StartRecord(); ChangeIntState(!_voiceActive); } }
     }
 
     private void ChangeIntState(bool toActiveState)
