@@ -2,41 +2,44 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TerminalClient.SettingsPage"
-                         Title="Settings">
-    <ScrollView>
-        <VerticalStackLayout Margin="10,10,10,10" Padding="10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Response animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
-                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Time animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
-                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Response light animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
-                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Time light animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
-                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="Settings">
+    <VerticalStackLayout>
+        <VerticalStackLayout x:Name="NetStateVSL"/>
+        <ScrollView>
+            <VerticalStackLayout Margin="10,10,10,10" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Response animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                    <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Time animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                    <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Response light animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                    <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Time light animations" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0"/>
+                    <Switch IsToggled="True" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>

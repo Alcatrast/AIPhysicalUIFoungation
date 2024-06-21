@@ -53,11 +53,8 @@ public partial class VoiceModePage : ContentPage
         string request = APIManager.Boxing(audioMessage);
         _ = await General.NetClient.Send(request);
 
-        string received = await General.NetClient.Receive();
-        if (APIManager.TryUnboxing(received, out var message))
-        {
-            if (message is AudioMessage am) { _AudioData = am.AudioData; }
-        }
+        _AudioData = General.MessageSorter.ForPlayer().AudioData; 
+        
         if (audioData != null)
         {
             _responseAwaiter.Elapsed -= OnTimedEvent;

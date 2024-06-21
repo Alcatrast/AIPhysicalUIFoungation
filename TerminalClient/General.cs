@@ -6,6 +6,7 @@ namespace TerminalClient
     public static class General
     {
         public static ATWebSocketClient NetClient { get; private set; } = new(ForNetTextAPIUrls.Client);
+        public static MessageSorter MessageSorter { get; private set; } = new(NetClient);
         public static class AutoReconnectSystem
         {
             private static ATWebSocketClient net;
