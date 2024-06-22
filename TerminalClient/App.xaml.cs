@@ -5,6 +5,7 @@
         public App()
         {
             InitializeComponent();
+            General.NetClient.Connect();
             MainPage = new AppShell();
         }
     }
