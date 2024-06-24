@@ -1,6 +1,6 @@
 ﻿namespace Server.VoiceService.TTSSTT
 {
-    internal interface ISTT
+    public interface ISTT
     {
         public string GetText(byte[] audioData);
     }

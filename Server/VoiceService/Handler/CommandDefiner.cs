@@ -18,15 +18,15 @@ namespace Server.VoiceService.Handler
        };
         public CommandDefiner() { }
 
-        public bool Define(string text, out CommandAudioDataPair cadp)
+        public bool Define(string text, out CommandAudioTextBundle cadp)
         {
             cadp = default;
             text = text.ToLower();
-            if(new ActivateWordNoCommand().IsCommandDefinedIn(text)==false) { return false; }
+            if (new ActivateWordNoCommand().IsCommandDefinedIn(text) == false) { return false; }
 
 
             CommandCommentPair resultPair = new UndefinedCommandComment();
-            foreach(var pair in _commandList)
+            foreach (var pair in _commandList)
             {
                 if (pair.IsCommandDefinedIn(text))
                 {
@@ -34,13 +34,13 @@ namespace Server.VoiceService.Handler
                     break;
                 }
             }
-            cadp = new(resultPair.Command, SideActionFor(resultPair.Audio));
+            cadp = new(resultPair.Command, "Done.", SideActionFor(resultPair.Audio));
             return true;
         }
 
         private byte[] SideActionFor(Speaker.Audio audio)
         {
-             return Speaker.GetVorbisData(audio);
+            return Speaker.GetVorbisData(audio);
         }
     }
 }

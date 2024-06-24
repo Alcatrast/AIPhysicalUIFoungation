@@ -1,20 +1,23 @@
 ﻿using Server.UserDataBase;
 using System.Text;
 
-namespace Server.VoiceService.Handler.GPTService.Yandex
+namespace Server.VoiceService.GPTService.Yandex
 {
-    internal class YandexGPTHandler
+    public class YandexGPTHandler
     {
+        private readonly string _apiKey;
+        private readonly string _folderID;
+        public YandexGPTHandler(string apiKey, string folderID) { _apiKey = apiKey; _folderID = folderID; }
         public async Task<string> GetResponse(string text, GPTSettings settings)
         {
             string url = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion";
 
-            YandexGPTRequestBody body = YandexGPTRequestBody.BuildFrom(text, settings);
+            YandexGPTRequestBody body = YandexGPTRequestBody.BuildFrom(_folderID, text, settings);
             string data = System.Text.Json.JsonSerializer.Serialize(body);
             string result = "Запрос не исполнен.";
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", $"Api-Key {General.Configuration.Tokens.YandexAPIKey}");
+                client.DefaultRequestHeaders.Add("Authorization", $"Api-Key {_apiKey}");
                 client.DefaultRequestHeaders.Add("x-data-logging-enabled", "false");
 
                 var content = new StringContent(data, Encoding.UTF8, "application/json");

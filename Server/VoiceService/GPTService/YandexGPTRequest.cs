@@ -1,16 +1,16 @@
 ﻿using Server.UserDataBase;
 
-namespace Server.VoiceService.Handler.GPTService.Yandex
+namespace Server.VoiceService.GPTService.Yandex
 {
     public class YandexGPTRequestBody
-
     {
-        public string modelUri { get; set; } = $"gpt://{General.Configuration.Tokens.YandexFolderId}/yandexgpt";
+        public string modelUri { get; set; }
         public YandexGPTCompletionOptions completionOptions { get; set; } = new();
         public List<YandexGPTMessage> messages { get; set; } = new();
-        public static YandexGPTRequestBody BuildFrom(string userCurrentRequest, GPTSettings settings)
+        public YandexGPTRequestBody(string folderId) { modelUri = $"gpt://{folderId}/yandexgpt"; }
+        public static YandexGPTRequestBody BuildFrom(string folderId, string userCurrentRequest, GPTSettings settings)
         {
-            YandexGPTRequestBody result= new();
+            YandexGPTRequestBody result = new (folderId);
             result.messages = settings.Dialog.Messages;
             result.messages.Add(new() { role = "user", text = userCurrentRequest });
             return result;

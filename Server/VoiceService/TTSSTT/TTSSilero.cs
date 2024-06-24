@@ -1,12 +1,14 @@
 ﻿using System.Net;
 
 namespace Server.VoiceService.TTSSTT;
-internal class TTSSilero
-{ 
+internal class TTSSilero : ITTS
+{
+    private readonly string _apiToken;
+    public TTSSilero(string apiToken) => _apiToken = apiToken;
     public string GetOggPath(string texte)
     {
         string audioFilePath = $@"C:\TEMP\glados\speech\temp\sound-{DateTime.Now.Ticks}.ogg";
-        string apiToken = General.Configuration.Tokens.SileroTTS;
+        string apiToken = _apiToken;
         string apiUrl = "https://api.silero.ai/voice";
 
         var httpWebRequest = (HttpWebRequest)WebRequest.Create(apiUrl);

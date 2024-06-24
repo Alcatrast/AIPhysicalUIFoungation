@@ -3,12 +3,15 @@ using System.Text;
 
 namespace Server.VoiceService.TTSSTT
 {
-    internal class STTYandex : ISTT
+    public class STTYandex : ISTT
     {
+        private readonly string _apiKey;
+        private readonly string _folderId;
+        public STTYandex(string apiKey, string folderId) { _apiKey = apiKey; _folderId = folderId; }
         public string GetText(byte[] audioWavData)
         {
-            string FOLDER_ID = General.Configuration.Tokens.YandexFolderId;
-            string API_KEY = General.Configuration.Tokens.YandexAPIKey;
+            string API_KEY = _apiKey;
+            string FOLDER_ID = _folderId;
 
             byte[] data = audioWavData;
 
@@ -43,13 +46,12 @@ namespace Server.VoiceService.TTSSTT
                     Console.WriteLine("Y Recognized text: " + decodedData.result);
                     return decodedData.result;
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Y Recognized ERROR: " + decodedData.error_code);
-                    return "Ошибка спичкит"; 
+                    return "Ошибка спичкит";
                 }
             }
         }
     }
 }
-

@@ -2,14 +2,16 @@
 
 namespace Server.VoiceService.TTSSTT;
 
-internal class STTSilero:ISTT
+public class STTSilero : ISTT
 {
+    private readonly string _apiToken;
+    public STTSilero(string apiToken) => _apiToken = apiToken;
     public string GetText(byte[] audioWavData)
     {
         //  File.WriteAllBytes(@"C:\Temp\blabla.wav", audioWavData);
 
 
-        string apiToken = General.Configuration.Tokens.SileroTTS;
+        string apiToken = _apiToken;
         string apiUrl = "https://api.silero.ai/transcribe";
 
 

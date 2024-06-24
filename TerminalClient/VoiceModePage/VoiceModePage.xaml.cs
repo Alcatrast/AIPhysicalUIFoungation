@@ -17,12 +17,12 @@ public partial class VoiceModePage : ContentPage
 
     private void OnStartStopRecordButtonClicked(object sender, EventArgs e)
     {
-        if (_voiceActive) 
+        if (_voiceActive)
         {
             if (General.AutoReconnectSystem.IsConnected) { _isCancelled = false; StopRecord(); ChangeIntState(!_voiceActive); }
             else { Cancel_Clicked(new(), new()); }
         }
-        else  { if (General.AutoReconnectSystem.IsConnected) { StartRecord(); ChangeIntState(!_voiceActive); } }
+        else { if (General.AutoReconnectSystem.IsConnected) { StartRecord(); ChangeIntState(!_voiceActive); } }
     }
 
     private void ChangeIntState(bool toActiveState)
@@ -52,12 +52,15 @@ public partial class VoiceModePage : ContentPage
         RecreateTimer(ref _responseAwaiter);
 
         byte[] audioData = outAudioPath;
-        AudioMessage audioMessage = new() { AudioData = audioData };
+        AudioTextMessage audioMessage = new() { AudioData = audioData };
         string request = APIManager.Boxing(audioMessage);
         _ = await General.NetClient.Send(request);
 
-        _AudioData = General.MessageSorter.ForPlayer().AudioData; 
-        
+        var atr = General.MessageSorter.ForAudioTextResponse();
+        _AudioData = atr.AudioData;
+        responseEditor.Text = atr.Text;
+
+
         if (audioData != null)
         {
             _responseAwaiter.Elapsed -= OnTimedEvent;
@@ -96,7 +99,8 @@ public partial class VoiceModePage : ContentPage
             Controlable(true);
             return;
         }
-        _ = Task.Run(() => {
+        _ = Task.Run(() =>
+        {
             new AudioPlayer().
                 Play(_AudioData, () =>
                 {

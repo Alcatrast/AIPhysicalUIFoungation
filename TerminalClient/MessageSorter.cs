@@ -14,8 +14,8 @@ public class MessageSorter
         thread.IsBackground = true;
         thread.Start();
     }
-    private Queue<AudioMessage> audioMessages = new();
-    public AudioMessage ForPlayer() { 
+    private Queue<AudioTextMessage> audioMessages = new();
+    public AudioTextMessage ForAudioTextResponse() { 
         while(audioMessages.Count == 0) { }
         return audioMessages.Dequeue();
     }
@@ -26,7 +26,7 @@ public class MessageSorter
             string received = await net.Receive();
             if (APIManager.TryUnboxing(received, out var message))
             {
-                if (message is AudioMessage am) { audioMessages.Enqueue(am); }
+                if (message is AudioTextMessage am) { audioMessages.Enqueue(am); }
             }
         }
     }

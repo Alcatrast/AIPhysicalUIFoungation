@@ -30,8 +30,8 @@ namespace ATNetAPI
                     messageNull = JsonConvert.DeserializeObject<ResendMessage>(bd);
                 else if (tp == new ConfigurationMessage().ToString())
                     messageNull = JsonConvert.DeserializeObject<ConfigurationMessage>(bd);
-                else if (tp == new AudioMessage().ToString()) 
-                    messageNull = JsonConvert.DeserializeObject<AudioMessage>(bd);
+                else if (tp == new AudioTextMessage().ToString()) 
+                    messageNull = JsonConvert.DeserializeObject<AudioTextMessage>(bd);
 
                 if (messageNull == null)
                     return false;

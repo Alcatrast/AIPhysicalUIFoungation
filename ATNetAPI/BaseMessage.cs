@@ -10,9 +10,10 @@ namespace ATNetAPI
     {
 
     }
-    public class AudioMessage : BaseMessage
+    public class AudioTextMessage : BaseMessage
     {
         public byte[] AudioData { get; set; }= new byte[0];
+        public string Text {  get; set; }=string.Empty;
     }
 
     public class ReceivedMessage 

@@ -1,4 +1,4 @@
-﻿using Server.VoiceService.Handler.GPTService.Yandex;
+﻿using Server.VoiceService.GPTService.Yandex;
 
 namespace Server.UserDataBase
 {

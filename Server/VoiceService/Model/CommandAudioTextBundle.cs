@@ -2,15 +2,17 @@
 
 namespace Server.VoiceService.Model
 {
-    public class CommandAudioDataPair
+    public class CommandAudioTextBundle
     {
-        public CommandAudioDataPair(IGladCommand command, byte[] audioData)
+        public CommandAudioTextBundle(IGladCommand command,string textData, byte[] audioData)
         {
             Command = command;
+            TextData = textData;
             AudioData = audioData;
         }
 
         public IGladCommand Command { get; set; }
+        public string TextData {  get; set; }
         public byte[] AudioData { get; set; }
     }
 }
